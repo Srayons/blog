@@ -3,7 +3,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "https://www.yxin.top",
+        target: "http://localhost:9999",
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""
