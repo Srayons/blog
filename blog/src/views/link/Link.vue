@@ -11,11 +11,11 @@
       </div>
       <v-row class="link-container">
         <v-col
+          class="link-wrapper"
+          md="4"
           v-for="item of friendLinkList"
           :key="item.id"
-          class="link-wrapper"
           cols="12"
-          md="4"
         >
           <a :href="item.linkAddress" target="_blank">
             <v-avatar class="link-avatar" size="65">

@@ -10,8 +10,8 @@
         {{ blogInfo.websiteConfig.websiteRecordNo }}
       </a>
       <a
-        href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202004437"
         style="display: block"
+        href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202004437"
         target="_blank"
       >
         <!--src="https://www.beian.gov.cn/img/ghs.png"-->

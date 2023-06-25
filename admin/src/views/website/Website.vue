@@ -4,24 +4,24 @@
       <!-- 修改信息 -->
       <el-tab-pane label="网站信息" name="info">
         <el-form
+          label-width="100px"
           :model="websiteConfigForm"
           label-position="left"
-          label-width="100px"
         >
           <el-form-item label="网站头像">
             <button id="website-avatar" class="pick-avatar">
               <el-avatar
-                  v-if="websiteConfigForm.websiteAvatar"
                   :size="120"
-                  :src="websiteConfigForm.websiteAvatar"
                   class="avatar"
+                  v-if="websiteConfigForm.websiteAvatar"
+                  :src="websiteConfigForm.websiteAvatar"
                   shape="square"
               />
             </button>
             <avatar-cropper
+                @uploaded="handleWebsiteAvatarSuccess"
                 trigger="#website-avatar"
                 upload-url="/api/admin/config/images"
-                @uploaded="handleWebsiteAvatarSuccess"
             />
           </el-form-item>
           <el-form-item label="网站名称">
@@ -47,20 +47,20 @@
           </el-form-item>
           <el-form-item label="网站创建日期">
             <el-date-picker
+              style="width:400px"
+              value-format="yyyy-MM-dd"
               v-model="websiteConfigForm.websiteCreateTime"
               placeholder="选择日期"
-              style="width:400px"
               type="date"
-              value-format="yyyy-MM-dd"
             />
           </el-form-item>
           <el-form-item label="网站公告">
             <el-input
               v-model="websiteConfigForm.websiteNotice"
-              :rows="5"
               placeholder="请输入公告内容"
               style="width:400px"
               type="textarea"
+              :rows="5"
             />
           </el-form-item>
           <el-form-item label="备案号">
@@ -84,9 +84,9 @@
             </el-checkbox-group>
           </el-form-item>
           <el-button
+            type="primary"
             size="medium"
             style="margin-left:6.3rem"
-            type="primary"
             @click="updateWebsiteConfig"
           >
             修改
@@ -122,9 +122,9 @@
               <el-checkbox label="gitee">是否展示</el-checkbox>
             </el-form-item>
             <el-button
+              type="primary"
               size="medium"
               style="margin-left:4.375rem"
-              type="primary"
               @click="updateWebsiteConfig"
             >
               修改
@@ -135,26 +135,26 @@
       <!-- 修改密码 -->
       <el-tab-pane label="其他设置" name="password">
         <el-form
+          label-width="120px"
           :model="websiteConfigForm"
           label-position="left"
-          label-width="120px"
         >
           <el-row style="width:600px">
             <el-col :md="12">
               <el-form-item label="用户头像">
                 <button id="user-avatar" class="pick-avatar">
                   <el-avatar
+                      class="avatar"
+                      shape="square"
                       v-if="websiteConfigForm.userAvatar"
                       :size="120"
                       :src="websiteConfigForm.userAvatar"
-                      class="avatar"
-                      shape="square"
                   />
                 </button>
                 <avatar-cropper
+                    @uploaded="handleUserAvatarSuccess"
                     trigger="#user-avatar"
                     upload-url="/api/admin/config/images"
-                    @uploaded="handleUserAvatarSuccess"
                 />
               </el-form-item>
             </el-col>
@@ -162,17 +162,17 @@
               <el-form-item label="游客头像">
                 <button id="tourist-avatar" class="pick-avatar">
                   <el-avatar
+                      class="avatar"
+                      shape="square"
                       v-if="websiteConfigForm.touristAvatar"
                       :size="120"
                       :src="websiteConfigForm.touristAvatar"
-                      class="avatar"
-                      shape="square"
                   />
                 </button>
                 <avatar-cropper
+                    @uploaded="handleTouristAvatarSuccess"
                     trigger="#tourist-avatar"
                     upload-url="/api/admin/config/images"
-                    @uploaded="handleTouristAvatarSuccess"
                 />
               </el-form-item>
             </el-col>
@@ -205,10 +205,10 @@
             <el-col :md="12">
               <el-form-item label="微信收款码">
                 <el-upload
+                  class="avatar-uploader"
                   :on-success="handleWeiXinSuccess"
                   :show-file-list="false"
                   action="/api/admin/config/images"
-                  class="avatar-uploader"
                 >
                   <img
                     v-if="websiteConfigForm.weiXinQRCode"
@@ -222,10 +222,10 @@
             <el-col :md="12">
               <el-form-item label="支付宝收款码">
                 <el-upload
+                  class="avatar-uploader"
                   :on-success="handleAlipaySuccess"
                   :show-file-list="false"
                   action="/api/admin/config/images"
-                  class="avatar-uploader"
                 >
                   <img
                     v-if="websiteConfigForm.alipayQRCode"
@@ -244,8 +244,8 @@
             </el-radio-group>
           </el-form-item>
           <el-form-item
-            v-show="websiteConfigForm.isChatRoom == 1"
             label="Websocket地址"
+            v-show="websiteConfigForm.isChatRoom == 1"
           >
             <el-input
               v-model="websiteConfigForm.websocketUrl"
@@ -260,9 +260,9 @@
             </el-radio-group>
           </el-form-item>
           <el-button
+            type="primary"
             size="medium"
             style="margin-left:6.3rem"
-            type="primary"
             @click="updateWebsiteConfig"
           >
             修改

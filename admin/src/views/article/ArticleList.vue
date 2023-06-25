@@ -23,8 +23,8 @@
       <el-button
         v-if="isDelete == 0"
         :disabled="articleIdList.length == 0"
-        icon="el-icon-delete"
         size="small"
+        icon="el-icon-delete"
         type="danger"
         @click="updateIsDelete = true"
       >
@@ -33,8 +33,8 @@
       <el-button
         v-else
         :disabled="articleIdList.length == 0"
-        icon="el-icon-delete"
         size="small"
+        icon="el-icon-delete"
         type="danger"
         @click="remove = true"
       >
@@ -42,20 +42,20 @@
       </el-button>
       <el-button
         :disabled="articleIdList.length == 0"
-        icon="el-icon-download"
         size="small"
-        style="margin-right:1rem"
+        icon="el-icon-download"
         type="success"
+        style="margin-right:1rem"
         @click="isExport = true"
       >
         批量导出
       </el-button>
       <el-upload
+        action="/api/admin/articles/import"
+        multiple
         :limit="9"
         :on-success="uploadArticle"
         :show-file-list="false"
-        action="/api/admin/articles/import"
-        multiple
       >
         <el-button icon="el-icon-upload" size="small" type="primary">
           批量导入
@@ -65,8 +65,8 @@
       <div style="margin-left:auto">
         <!-- 文章类型 -->
         <el-select
-          v-model="type"
           clearable
+          v-model="type"
           placeholder="请选择文章类型"
           size="small"
           style="margin-right:1rem;width: 180px;"
@@ -80,11 +80,11 @@
         </el-select>
         <!-- 分类 -->
         <el-select
-          v-model="categoryId"
           clearable
+          v-model="categoryId"
+          size="small"
           filterable
           placeholder="请选择分类"
-          size="small"
           style="margin-right:1rem;width: 180px;"
         >
           <el-option
@@ -96,11 +96,11 @@
         </el-select>
         <!-- 标签 -->
         <el-select
-          v-model="tagId"
           clearable
+          size="small"
+          v-model="tagId"
           filterable
           placeholder="请选择标签"
-          size="small"
           style="margin-right:1rem;width: 180px;"
         >
           <el-option
@@ -112,19 +112,19 @@
         </el-select>
         <!-- 文章名 -->
         <el-input
-          v-model="keywords"
           clearable
-          placeholder="请输入文章名"
+          v-model="keywords"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入文章名"
           style="width:200px"
           @keyup.enter.native="searchArticles"
         />
         <el-button
-          icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          icon="el-icon-search"
+          style="margin-left:1rem"
           @click="searchArticles"
         >
           搜索
@@ -133,28 +133,28 @@
     </div>
     <!-- 表格展示 -->
     <el-table
-      v-loading="loading"
-      :data="articleList"
       border
+      v-loading="loading"
       @selection-change="selectionChange"
+      :data="articleList"
     >
       <!-- 表格列 -->
       <el-table-column type="selection" width="55" />
       <!-- 文章修改时间 -->
       <el-table-column
-        align="center"
-        label="文章封面"
         prop="articleCover"
+        align="center"
         width="180"
+        label="文章封面"
       >
         <template slot-scope="scope">
           <el-image
+            class="article-cover"
             :src="
               scope.row.articleCover
                 ? scope.row.articleCover
                 : 'https://static.talkxj.com/articles/c5cc2b2561bd0e3060a500198a4ad37d.png'
             "
-            class="article-cover"
           />
           <i
             v-if="scope.row.status == 1"
@@ -176,15 +176,15 @@
       <el-table-column
         align="center"
         label="分类"
-        prop="categoryName"
         width="110"
+        prop="categoryName"
       />
       <!-- 文章标签 -->
       <el-table-column
         align="center"
         label="标签"
-        prop="tagDTOList"
         width="170"
+        prop="tagDTOList"
       >
         <template slot-scope="scope">
           <el-tag
@@ -200,8 +200,8 @@
       <el-table-column
         align="center"
         label="浏览量"
-        prop="viewsCount"
         width="70"
+        prop="viewsCount"
       >
         <template slot-scope="scope">
           <span v-if="scope.row.viewsCount">
@@ -212,10 +212,10 @@
       </el-table-column>
       <!-- 文章点赞量 -->
       <el-table-column
-        align="center"
-        label="点赞量"
         prop="likeCount"
+        align="center"
         width="70"
+        label="点赞量"
       >
         <template slot-scope="scope">
           <span v-if="scope.row.likeCount">
@@ -234,10 +234,10 @@
       </el-table-column>
       <!-- 文章发表时间 -->
       <el-table-column
-        align="center"
-        label="发表时间"
         prop="createTime"
+        align="center"
         width="130"
+        label="发表时间"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -249,11 +249,11 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.isTop"
+            active-color="#13ce66"
+            inactive-color="#F4F4F5"
             :active-value="1"
             :disabled="scope.row.isDelete == 1"
             :inactive-value="0"
-            active-color="#13ce66"
-            inactive-color="#F4F4F5"
             @change="changeTop(scope.row)"
           />
         </template>
@@ -264,24 +264,24 @@
           <el-button
             v-if="scope.row.isDelete == 0"
             size="mini"
-            type="primary"
             @click="editArticle(scope.row.id)"
+            type="primary"
           >
             编辑
           </el-button>
           <el-popconfirm
             v-if="scope.row.isDelete == 0"
             style="margin-left:10px"
-            title="确定删除吗？"
             @confirm="updateArticleDelete(scope.row.id)"
+            title="确定删除吗？"
           >
             <el-button slot="reference" size="mini" type="danger">
               删除
             </el-button>
           </el-popconfirm>
           <el-popconfirm
-            v-if="scope.row.isDelete == 1"
             title="确定恢复吗？"
+            v-if="scope.row.isDelete == 1"
             @confirm="updateArticleDelete(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="success">
@@ -289,8 +289,8 @@
             </el-button>
           </el-popconfirm>
           <el-popconfirm
-            v-if="scope.row.isDelete == 1"
             style="margin-left:10px"
+            v-if="scope.row.isDelete == 1"
             title="确定彻底删除吗？"
             @confirm="deleteArticles(scope.row.id)"
           >
@@ -303,15 +303,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 批量逻辑删除对话框 -->
     <el-dialog :visible.sync="updateIsDelete" width="30%">

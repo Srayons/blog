@@ -49,15 +49,15 @@
           <!-- 图片列表 -->
           <el-row v-if="item.imgList" :gutter="4" class="talk-images">
             <el-col
-              v-for="(img, index) of item.imgList"
-              :key="index"
               :cols="6"
               :md="8"
+              v-for="(img, index) of item.imgList"
+              :key="index"
             >
               <el-image
+                class="images-items"
                 :preview-src-list="previewList"
                 :src="img"
-                class="images-items"
               />
             </el-col>
           </el-row>
@@ -66,14 +66,14 @@
     </div>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
       :hide-on-single-page="false"
-      :page-size="size"
-      :total="count"
       class="pagination-container"
-      layout="prev, pager, next"
       @size-change="sizeChange"
       @current-change="currentChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
+      layout="prev, pager, next"
     />
     <!-- 删除对话框 -->
     <el-dialog :visible.sync="isdelete" width="30%">

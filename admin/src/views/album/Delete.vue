@@ -6,8 +6,8 @@
     <div class="operation">
       <div class="all-check">
         <el-checkbox
-          v-model="checkAll"
           :indeterminate="isIndeterminate"
+          v-model="checkAll"
           @change="handleCheckAllChange"
         >
           全选
@@ -15,20 +15,20 @@
         <div class="check-count">已选择{{ selectPhotoIdList.length }}张</div>
       </div>
       <el-button
-        :disabled="selectPhotoIdList.length == 0"
         icon="el-icon-deleteItem"
-        size="small"
         type="success"
+        :disabled="selectPhotoIdList.length == 0"
+        size="small"
         @click="updatePhotoDelete(null)"
       >
         批量恢复
       </el-button>
       <el-button
-        :disabled="selectPhotoIdList.length == 0"
-        icon="el-icon-deleteItem"
         size="small"
         type="danger"
+        :disabled="selectPhotoIdList.length == 0"
         @click="batchDeletePhoto = true"
+        icon="el-icon-deleteItem"
       >
         批量删除
       </el-button>
@@ -46,8 +46,8 @@
             <div class="photo-item">
               <el-image
                 :preview-photoSrc-list="photoList"
-                :src="item.photoSrc"
                 class="photo-img"
+                :src="item.photoSrc"
                 fit="cover"
               />
               <div class="photo-name">{{ item.photoName }}</div>
@@ -58,14 +58,14 @@
     </el-row>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
       :hide-on-single-page="true"
-      :page-size="size"
-      :total="count"
+      :current-page="current"
       class="pagination-container"
-      layout="prev, pager, next"
       @size-change="sizeChange"
       @current-change="currentChange"
+      :page-size="size"
+      :total="count"
+      layout="prev, pager, next"
     />
     <!-- 批量删除对话框 -->
     <el-dialog :visible.sync="batchDeletePhoto" width="30%">

@@ -9,9 +9,9 @@
       <div class="photo-wrap">
         <img
           v-for="(item, index) of photoList"
+          class="photo"
           :key="index"
           :src="item"
-          class="photo"
           @click="preview(index)"
         />
       </div>

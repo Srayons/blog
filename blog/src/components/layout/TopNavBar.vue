@@ -90,8 +90,8 @@
         </div>
         <div class="menus-item">
           <a
-            v-if="!this.$store.state.avatar"
             class="menu-btn"
+            v-if="!this.$store.state.avatar"
             @click="openLogin"
           >
             <i class="iconfont icondenglu" /> 登录
@@ -100,8 +100,8 @@
             <img
               :src="this.$store.state.avatar"
               class="user-avatar"
-              height="30"
               referrerpolicy="no-referrer"
+              height="30"
               width="30"
             />
             <ul class="menus-submenu">

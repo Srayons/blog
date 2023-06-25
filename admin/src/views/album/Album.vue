@@ -4,9 +4,9 @@
     <div class="title">{{ this.$route.name }}</div>
     <div class="operation-container">
       <el-button
+        type="primary"
         icon="el-icon-plus"
         size="small"
-        type="primary"
         @click="openModel(null)"
       >
         新建相册
@@ -15,25 +15,25 @@
         <el-button
           icon="el-icon-delete"
           size="small"
-          style="margin-right:1rem"
           type="text"
+          style="margin-right:1rem"
           @click="checkDelete"
         >
           回收站
         </el-button>
         <el-input
           v-model="keywords"
-          placeholder="请输入相册名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入相册名"
           style="width:200px"
           @keyup.enter.native="searchAlbums"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchAlbums"
         >
           搜索
@@ -71,14 +71,14 @@
     </el-row>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
       :hide-on-single-page="true"
-      :page-size="size"
-      :total="count"
       class="pagination-container"
-      layout="prev, pager, next"
       @size-change="sizeChange"
       @current-change="currentChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
+      layout="prev, pager, next"
     />
     <!-- 新增模态框 -->
     <el-dialog :visible.sync="addOrEdit" top="10vh" width="35%">
@@ -92,13 +92,13 @@
         </el-form-item>
         <el-form-item label="相册封面">
           <el-upload
+            class="upload-cover"
+            drag
             :before-upload="beforeUpload"
             :on-success="uploadCover"
             :show-file-list="false"
-            action="/api/admin/photos/albums/cover"
-            class="upload-cover"
-            drag
             multiple
+            action="/api/admin/photos/albums/cover"
           >
             <i v-if="albumForum.albumCover == ''" class="el-icon-upload" />
             <div v-if="albumForum.albumCover == ''" class="el-upload__text">
@@ -107,8 +107,8 @@
             <img
               v-else
               :src="albumForum.albumCover"
-              height="180px"
               width="360px"
+              height="180px"
             />
           </el-upload>
         </el-form-item>

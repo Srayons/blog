@@ -32,15 +32,15 @@
               <!-- 图片列表 -->
               <v-row v-if="item.imgList" class="talk-images">
                 <v-col
-                  v-for="(img, index) of item.imgList"
-                  :key="index"
                   :cols="6"
                   :md="4"
+                  v-for="(img, index) of item.imgList"
+                  :key="index"
                 >
                   <v-img
+                    class="images-items"
                     :src="img"
                     aspect-ratio="1"
-                    class="images-items"
                     max-height="200"
                     @click.prevent="previewImg(img)"
                   />
@@ -50,9 +50,9 @@
               <div class="talk-operation">
                 <div class="talk-operation-item">
                   <v-icon
+                    size="16"
                     :color="isLike(item.id)"
                     class="like-btn"
-                    size="16"
                     @click.prevent="like(item)"
                   >
                     mdi-thumb-up
@@ -73,8 +73,8 @@
         </router-link>
       </div>
       <div
-        v-if="talkList && count > talkList.length"
         class="load-wrapper"
+        v-if="talkList && count > talkList.length"
         @click="listTalks"
       >
         <v-btn outlined>

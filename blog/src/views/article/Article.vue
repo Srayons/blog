@@ -67,9 +67,9 @@
         <v-card class="article-wrapper">
           <article
             id="write"
-            ref="article"
             class="article-content markdown-body"
             v-html="article.articleContent"
+            ref="article"
           />
           <!-- 版权声明 -->
           <div class="aritcle-copyright">
@@ -125,15 +125,15 @@
                 <ul class="reward-all">
                   <li class="reward-item">
                     <img
-                      :src="blogInfo.websiteConfig.weiXinQRCode"
                       class="reward-img"
+                      :src="blogInfo.websiteConfig.weiXinQRCode"
                     />
                     <div class="reward-desc">微信</div>
                   </li>
                   <li class="reward-item">
                     <img
-                      :src="blogInfo.websiteConfig.alipayQRCode"
                       class="reward-img"
+                      :src="blogInfo.websiteConfig.alipayQRCode"
                     />
                     <div class="reward-desc">支付宝</div>
                   </li>
@@ -144,13 +144,13 @@
           <div class="pagination-post">
             <!-- 上一篇 -->
             <div
-              v-if="article.lastArticle.id"
               :class="isFull(article.lastArticle.id)"
+              v-if="article.lastArticle.id"
             >
               <router-link :to="'/articles/' + article.lastArticle.id">
                 <img
-                  :src="article.lastArticle.articleCover"
                   class="post-cover"
+                  :src="article.lastArticle.articleCover"
                 />
                 <div class="post-info">
                   <div class="label">上一篇</div>
@@ -162,13 +162,13 @@
             </div>
             <!-- 下一篇 -->
             <div
-              v-if="article.nextArticle.id"
               :class="isFull(article.nextArticle.id)"
+              v-if="article.nextArticle.id"
             >
               <router-link :to="'/articles/' + article.nextArticle.id">
                 <img
-                  :src="article.nextArticle.articleCover"
                   class="post-cover"
+                  :src="article.nextArticle.articleCover"
                 />
                 <div class="post-info" style="text-align: right">
                   <div class="label">下一篇</div>
@@ -181,8 +181,8 @@
           </div>
           <!-- 推荐文章 -->
           <div
-            v-if="article.recommendArticleList.length"
             class="recommend-container"
+            v-if="article.recommendArticleList.length"
           >
             <div class="recommend-title">
               <v-icon color="#4c4948" size="20">mdi-thumb-up</v-icon>
@@ -190,9 +190,9 @@
             </div>
             <div class="recommend-list">
               <div
+                class="recommend-item"
                 v-for="item of article.recommendArticleList"
                 :key="item.id"
-                class="recommend-item"
               >
                 <router-link :to="'/articles/' + item.id">
                   <img :src="item.articleCover" class="recommend-cover" />
@@ -211,8 +211,8 @@
           <hr />
           <!-- 评论 -->
           <comment
-            :authorId="this.article.userId"
             :type="commentType"
+            :authorId="this.article.userId"
             @getCommentCount="getCommentCount"
           />
         </v-card>
@@ -236,9 +236,9 @@
             </div>
             <div class="article-list">
               <div
+                class="article-item"
                 v-for="item of article.newestArticleList"
                 :key="item.id"
-                class="article-item"
               >
                 <router-link :to="'/articles/' + item.id" class="content-cover">
                   <img :src="item.articleCover" />

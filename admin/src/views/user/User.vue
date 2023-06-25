@@ -7,8 +7,8 @@
       <div style="margin-left:auto">
         <!-- 登录方式 -->
         <el-select
-          v-model="loginType"
           clearable
+          v-model="loginType"
           placeholder="请选择登录方式"
           size="small"
           style="margin-right:1rem"
@@ -22,17 +22,17 @@
         </el-select>
         <el-input
           v-model="keywords"
-          placeholder="请输入昵称"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入昵称"
           style="width:200px"
           @keyup.enter.native="searchUsers"
         />
         <el-button
-          icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          icon="el-icon-search"
+          style="margin-left:1rem"
           @click="searchUsers"
         >
           搜索
@@ -43,9 +43,9 @@
     <el-table v-loading="loading" :data="userList" border>
       <!-- 表格列 -->
       <el-table-column
+        prop="linkAvatar"
         align="center"
         label="头像"
-        prop="linkAvatar"
         width="100"
       >
         <template slot-scope="scope">
@@ -53,9 +53,9 @@
         </template>
       </el-table-column>
       <el-table-column
+        prop="nickname"
         align="center"
         label="昵称"
-        prop="nickname"
         width="140"
       />
       <el-table-column
@@ -85,31 +85,31 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.isDisable"
-            :active-value="1"
-            :inactive-value="0"
             active-color="#13ce66"
             inactive-color="#F4F4F5"
+            :active-value="1"
+            :inactive-value="0"
             @change="changeDisable(scope.row)"
           />
         </template>
       </el-table-column>
       <el-table-column
+        prop="ipAddress"
         align="center"
         label="登录ip"
-        prop="ipAddress"
         width="140"
       />
       <el-table-column
-        align="center"
         label="登录地址"
         prop="ipSource"
+        align="center"
         width="140"
       />
       <el-table-column
         align="center"
         label="创建时间"
-        prop="createTime"
         width="130"
+        prop="createTime"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -119,8 +119,8 @@
       <el-table-column
         align="center"
         label="上次登录时间"
-        prop="lastLoginTime"
         width="130"
+        prop="lastLoginTime"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -131,8 +131,8 @@
       <el-table-column align="center" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
-            size="mini"
             type="primary"
+            size="mini"
             @click="openEditModel(scope.row)"
           >
             编辑
@@ -142,15 +142,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 修改对话框 -->
     <el-dialog :visible.sync="isEdit" width="30%">

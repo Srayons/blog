@@ -5,23 +5,23 @@
     <div class="article-title-container">
       <el-input
         v-model="article.articleTitle"
-        placeholder="输入文章标题"
         size="medium"
+        placeholder="输入文章标题"
       />
       <el-button
         v-if="article.id == null || article.status == 3"
-        class="save-btn"
         size="medium"
-        type="danger"
+        class="save-btn"
         @click="saveArticleDraft"
+        type="danger"
       >
         保存草稿
       </el-button>
       <el-button
-        size="medium"
-        style="margin-left:10px"
         type="danger"
+        size="medium"
         @click="openModel"
+        style="margin-left:10px"
       >
         发布文章
       </el-button>
@@ -30,8 +30,8 @@
     <mavon-editor
       ref="md"
       v-model="article.articleContent"
-      style="height:calc(100vh - 260px)"
       @imgAdd="uploadImg"
+      style="height:calc(100vh - 260px)"
     />
     <!-- 添加文章对话框 -->
     <el-dialog :visible.sync="addOrEdit" top="3vh" width="40%">
@@ -43,8 +43,8 @@
         <!-- 文章分类 -->
         <el-form-item label="文章分类">
           <el-tag
-            v-show="article.categoryName"
             :closable="true"
+            v-show="article.categoryName"
             style="margin:0 1rem 0 0"
             type="success"
             @close="removeCategory"
@@ -53,21 +53,21 @@
           </el-tag>
           <!-- 分类选项 -->
           <el-popover
-            v-if="!article.categoryName"
             placement="bottom-start"
+            v-if="!article.categoryName"
             trigger="click"
             width="460"
           >
             <div class="popover-title">分类</div>
             <!-- 搜索框 -->
             <el-autocomplete
+              :trigger-on-focus="false"
               v-model="categoryName"
               :fetch-suggestions="searchCategories"
-              :trigger-on-focus="false"
               placeholder="请输入分类名搜索，enter可添加自定义分类"
               style="width:100%"
-              @select="handleSelectCategories"
               @keyup.enter.native="saveCategory"
+              @select="handleSelectCategories"
             >
               <template slot-scope="{ item }">
                 <div>{{ item.categoryName }}</div>
@@ -94,29 +94,29 @@
           <el-tag
             v-for="(item, index) of article.tagNameList"
             :key="index"
-            :closable="true"
             style="margin:0 1rem 0 0"
+            :closable="true"
             @close="removeTag(item)"
           >
             {{ item }}
           </el-tag>
           <!-- 标签选项 -->
           <el-popover
-            v-if="article.tagNameList.length < 3"
             placement="bottom-start"
+            v-if="article.tagNameList.length < 3"
             trigger="click"
             width="460"
           >
             <div class="popover-title">标签</div>
             <!-- 搜索框 -->
             <el-autocomplete
+              :trigger-on-focus="false"
               v-model="tagName"
               :fetch-suggestions="searchTags"
-              :trigger-on-focus="false"
               placeholder="请输入标签名搜索，enter可添加自定义标签"
               style="width:100%"
-              @select="handleSelectTag"
               @keyup.enter.native="saveTag"
+              @select="handleSelectTag"
             >
               <template slot-scope="{ item }">
                 <div>{{ item.tagName }}</div>
@@ -158,12 +158,12 @@
         </el-form-item>
         <el-form-item label="上传封面">
           <el-upload
-            :before-upload="beforeUpload"
-            :on-success="uploadCover"
-            action="/api/admin/articles/images"
             class="upload-cover"
             drag
+            :before-upload="beforeUpload"
             multiple
+            :on-success="uploadCover"
+            action="/api/admin/articles/images"
           >
             <i v-if="article.articleCover == ''" class="el-icon-upload" />
             <div v-if="article.articleCover == ''" class="el-upload__text">
@@ -172,18 +172,18 @@
             <img
               v-else
               :src="article.articleCover"
-              height="180px"
               width="360px"
+              height="180px"
             />
           </el-upload>
         </el-form-item>
         <el-form-item label="置顶">
           <el-switch
             v-model="article.isTop"
-            :active-value="1"
-            :inactive-value="0"
             active-color="#13ce66"
             inactive-color="#F4F4F5"
+            :active-value="1"
+            :inactive-value="0"
           />
         </el-form-item>
         <el-form-item label="发布形式">

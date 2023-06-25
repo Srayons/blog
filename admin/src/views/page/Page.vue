@@ -4,9 +4,9 @@
     <div class="title">{{ this.$route.name }}</div>
     <div class="operation-container">
       <el-button
+        type="primary"
         icon="el-icon-plus"
         size="small"
-        type="primary"
         @click="openModel(null)"
       >
         新建页面
@@ -49,13 +49,13 @@
         </el-form-item>
         <el-form-item label="页面封面">
           <el-upload
-            :before-upload="beforeUpload"
-            :on-success="uploadCover"
-            :show-file-list="false"
-            action="/api/admin/config/images"
             class="upload-cover"
             drag
+            :before-upload="beforeUpload"
+            :on-success="uploadCover"
             multiple
+            :show-file-list="false"
+            action="/api/admin/config/images"
           >
             <i v-if="pageForum.pageCover == ''" class="el-icon-upload" />
             <div v-if="pageForum.pageCover == ''" class="el-upload__text">
@@ -64,8 +64,8 @@
             <img
               v-else
               :src="pageForum.pageCover"
-              height="180px"
               width="360px"
+              height="180px"
             />
           </el-upload>
         </el-form-item>

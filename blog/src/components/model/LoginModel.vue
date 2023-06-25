@@ -8,26 +8,26 @@
         <!-- 用户名 -->
         <v-text-field
           v-model="username"
-          clearable
           label="邮箱号"
           placeholder="请输入您的邮箱号"
+          clearable
           @keyup.enter="login"
         />
         <!-- 密码 -->
         <v-text-field
           v-model="password"
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="show ? 'text' : 'password'"
           class="mt-7"
           label="密码"
           placeholder="请输入您的密码"
           @keyup.enter="login"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show ? 'text' : 'password'"
           @click:append="show = !show"
         />
         <!-- 按钮 -->
         <v-btn
-          block
           class="mt-7"
+          block
           color="blue"
           style="color:#fff"
           @click="login"

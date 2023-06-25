@@ -4,20 +4,20 @@
     <div class="review-menu">
       <span>状态</span>
       <span
-        :class="isReview == null ? 'active-review' : 'review'"
         @click="changeReview(null)"
+        :class="isReview == null ? 'active-review' : 'review'"
       >
         全部
       </span>
       <span
-        :class="isReview == 1 ? 'active-review' : 'review'"
         @click="changeReview(1)"
+        :class="isReview == 1 ? 'active-review' : 'review'"
       >
         正常
       </span>
       <span
-        :class="isReview == 0 ? 'active-review' : 'review'"
         @click="changeReview(0)"
+        :class="isReview == 0 ? 'active-review' : 'review'"
       >
         审核中
       </span>
@@ -26,8 +26,8 @@
     <div class="operation-container">
       <el-button
         :disabled="messageIdList.length == 0"
-        icon="el-icon-delete"
         size="small"
+        icon="el-icon-delete"
         type="danger"
         @click="deleteFlag = true"
       >
@@ -35,8 +35,8 @@
       </el-button>
       <el-button
         :disabled="messageIdList.length == 0"
-        icon="el-icon-success"
         size="small"
+        icon="el-icon-success"
         type="success"
         @click="updateMessageReview(null)"
       >
@@ -46,17 +46,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入用户昵称"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入用户昵称"
           style="width:200px"
           @keyup.enter.native="searchMessages"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchMessages"
         >
           搜索
@@ -65,9 +65,9 @@
     </div>
     <!-- 表格展示 -->
     <el-table
+      border
       v-loading="loading"
       :data="messageList"
-      border
       @selection-change="selectionChange"
     >
       <!-- 表格列 -->
@@ -78,9 +78,9 @@
         </template>
       </el-table-column>
       <el-table-column
+        prop="nickname"
         align="center"
         label="留言人"
-        prop="nickname"
         width="150"
       />
       <el-table-column align="center" label="留言内容" prop="messageContent" />
@@ -91,9 +91,9 @@
         width="150"
       />
       <el-table-column
+        prop="ipSource"
         align="center"
         label="ip来源"
-        prop="ipSource"
         width="170"
       />
       <!-- 状态 -->
@@ -106,8 +106,8 @@
       <el-table-column
         align="center"
         label="留言时间"
-        prop="createTime"
         width="140"
+        prop="createTime"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -119,9 +119,9 @@
         <template slot-scope="scope">
           <el-button
             v-if="scope.row.isReview == 0"
-            slot="reference"
             size="mini"
             type="success"
+            slot="reference"
             @click="updateMessageReview(scope.row.id)"
           >
             通过
@@ -140,15 +140,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 批量删除对话框 -->
     <el-dialog :visible.sync="deleteFlag" width="30%">

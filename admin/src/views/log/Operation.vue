@@ -4,10 +4,10 @@
     <div class="title">{{ this.$route.name }}</div>
     <div class="operation-container">
       <el-button
+        type="danger"
         :disabled="this.logIdList.length == 0"
         icon="el-icon-delete"
         size="small"
-        type="danger"
         @click="isDelete = true"
       >
         批量删除
@@ -16,17 +16,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入模块名或描述"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入模块名或描述"
           style="width:200px"
           @keyup.enter.native="searchLogs"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchLogs"
         >
           搜索
@@ -35,9 +35,9 @@
     </div>
     <!-- 权限列表 -->
     <el-table
+      @selection-change="selectionChange"
       v-loading="loading"
       :data="logList"
-      @selection-change="selectionChange"
     >
       <el-table-column align="center" type="selection" width="55" />
       <el-table-column
@@ -47,10 +47,10 @@
         width="120"
       />
       <el-table-column
-        align="center"
+        width="100"
         label="操作类型"
         prop="optType"
-        width="100"
+        align="center"
       />
       <el-table-column
         align="center"
@@ -59,9 +59,9 @@
         width="150"
       />
       <el-table-column
+        prop="requetMethod"
         align="center"
         label="请求方式"
-        prop="requetMethod"
         width="100"
       >
         <template v-if="scope.row.requestMethod" slot-scope="scope">
@@ -72,9 +72,9 @@
       </el-table-column>
       <el-table-column align="center" label="操作人员" prop="nickname" />
       <el-table-column
+        prop="ipAddress"
         align="center"
         label="登录ip"
-        prop="ipAddress"
         width="130"
       />
       <el-table-column
@@ -97,16 +97,16 @@
       <el-table-column align="center" label="操作" width="150">
         <template slot-scope="scope">
           <el-button
-            slot="reference"
             size="mini"
             type="text"
+            slot="reference"
             @click="check(scope.row)"
           >
             <i class="el-icon-view" /> 查看
           </el-button>
           <el-popconfirm
-            style="margin-left:10px"
             title="确定删除吗？"
+            style="margin-left:10px"
             @confirm="deleteLog(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="text">
@@ -118,15 +118,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 查看模态框 -->
     <el-dialog :visible.sync="isCheck" width="40%">

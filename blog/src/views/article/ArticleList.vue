@@ -13,10 +13,10 @@
               <router-link :to="'/articles/' + item.id">
                 <!-- 缩略图 -->
                 <v-img
-                  :src="item.articleCover"
                   class="on-hover"
-                  height="100%"
                   width="100%"
+                  :src="item.articleCover"
+                  height="100%"
                 />
               </router-link>
             </div>
@@ -45,10 +45,10 @@
             <!-- 文章标签 -->
             <div class="tag-wrapper">
               <router-link
-                v-for="tag of item.tagDTOList"
-                :key="tag.id"
                 :to="'/tags/' + tag.id"
                 class="tag-btn"
+                v-for="tag of item.tagDTOList"
+                :key="tag.id"
               >
                 {{ tag.tagName }}
               </router-link>

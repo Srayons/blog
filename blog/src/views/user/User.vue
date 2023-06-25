@@ -12,17 +12,17 @@
           <button id="pick-avatar">
             <v-avatar size="140">
               <img
-                :src="this.$store.state.avatar"
-                alt="头像"
                 referrerpolicy="no-referrer"
+                :src="this.$store.state.avatar"
                 style="cursor: pointer;"
+                alt="头像"
               />
             </v-avatar>
           </button>
           <avatar-cropper
+            @uploaded="uploadAvatar"
             trigger="#pick-avatar"
             upload-url="/api/users/avatar"
-            @uploaded="uploadAvatar"
           />
         </v-col>
         <v-col cols="12" md="7">
@@ -45,8 +45,8 @@
           />
           <div v-if="loginType != 0" class="mt-7 binding">
             <v-text-field
-              v-model="email"
               disabled
+              v-model="email"
               label="邮箱号"
               placeholder="请绑定邮箱"
             />

@@ -1,9 +1,9 @@
 <template>
   <div v-show="chooseEmoji" class="emoji-wrapper">
     <span
+      class="emoji-item"
       v-for="(value, key, index) of emojiList"
       :key="index"
-      class="emoji-item"
       @click="addEmoji(key)"
     >
       <span class="emoji" v-html="value"/>

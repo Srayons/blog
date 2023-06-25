@@ -4,17 +4,17 @@
     <!-- 表格操作 -->
     <div class="operation-container">
       <el-button
-        icon="el-icon-plus"
         size="small"
         type="primary"
+        icon="el-icon-plus"
         @click="openModel(null)"
       >
         新增
       </el-button>
       <el-button
         :disabled="linkIdList.length == 0"
-        icon="el-icon-delete"
         size="small"
+        icon="el-icon-delete"
         type="danger"
         @click="deleteFlag = true"
       >
@@ -24,17 +24,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入友链名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入友链名"
           style="width:200px"
           @keyup.enter.native="searchLinks"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchLinks"
         >
           搜索
@@ -45,15 +45,15 @@
     <el-table
       v-loading="loading"
       :data="linkList"
-      border
       @selection-change="selectionChange"
+      border
     >
       <!-- 表格列 -->
       <el-table-column type="selection" width="55" />
       <el-table-column
-        align="center"
         label="链接头像"
         prop="linkAvatar"
+        align="center"
         width="180"
       >
         <template slot-scope="scope">
@@ -64,10 +64,10 @@
       <el-table-column align="center" label="链接地址" prop="linkAddress" />
       <el-table-column align="center" label="链接介绍" prop="linkIntro" />
       <el-table-column
-        align="center"
-        label="创建时间"
         prop="createTime"
+        align="center"
         width="140"
+        label="创建时间"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -81,8 +81,8 @@
             编辑
           </el-button>
           <el-popconfirm
-            style="margin-left:1rem"
             title="确定删除吗？"
+            style="margin-left:1rem"
             @confirm="deleteLink(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="danger">
@@ -94,15 +94,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 批量删除对话框 -->
     <el-dialog :visible.sync="deleteFlag" width="30%">

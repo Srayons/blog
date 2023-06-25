@@ -26,15 +26,15 @@
             <!-- 图片列表 -->
             <v-row v-if="talkInfo.imgList" class="talk-images">
               <v-col
-                v-for="(img, index) of talkInfo.imgList"
-                :key="index"
                 :cols="6"
                 :md="4"
+                v-for="(img, index) of talkInfo.imgList"
+                :key="index"
               >
                 <v-img
+                  class="images-items"
                   :src="img"
                   aspect-ratio="1"
-                  class="images-items"
                   max-height="200"
                   @click="previewImg(img)"
                 />
@@ -44,9 +44,9 @@
             <div class="talk-operation">
               <div class="talk-operation-item">
                 <v-icon
+                  size="16"
                   :color="isLike(talkInfo.id)"
                   class="like-btn"
-                  size="16"
                   @click.prevent="like(talkInfo)"
                 >
                   mdi-thumb-up

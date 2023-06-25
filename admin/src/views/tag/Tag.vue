@@ -4,18 +4,18 @@
     <!-- 表格操作 -->
     <div class="operation-container">
       <el-button
+        type="primary"
         icon="el-icon-plus"
         size="small"
-        type="primary"
         @click="openModel(null)"
       >
         新增
       </el-button>
       <el-button
+        type="danger"
         :disabled="tagIdList.length == 0"
         icon="el-icon-delete"
         size="small"
-        type="danger"
         @click="isDelete = true"
       >
         批量删除
@@ -23,17 +23,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入标签名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入标签名"
           style="width:200px"
           @keyup.enter.native="searchTags"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchTags"
         >
           搜索
@@ -42,9 +42,9 @@
     </div>
     <!-- 表格展示 -->
     <el-table
+      border
       v-loading="loading"
       :data="tagList"
-      border
       @selection-change="selectionChange"
     >
       <!-- 表格列 -->
@@ -73,8 +73,8 @@
             编辑
           </el-button>
           <el-popconfirm
-            style="margin-left:1rem"
             title="确定删除吗？"
+            style="margin-left:1rem"
             @confirm="deleteTag(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="danger">
@@ -86,15 +86,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 批量删除对话框 -->
     <el-dialog :visible.sync="isDelete" width="30%">

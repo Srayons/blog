@@ -15,25 +15,25 @@
         <div class="blog-contact">
           <a
             v-if="isShowSocial('qq')"
+            class="mr-5 iconfont iconqq"
+            target="_blank"
             :href="
               'http://wpa.qq.com/msgrd?v=3&uin=' +
                 blogInfo.websiteConfig.qq +
                 '&site=qq&menu=yes'
             "
-            class="mr-5 iconfont iconqq"
-            target="_blank"
           />
           <a
             v-if="isShowSocial('github')"
+            target="_blank"
             :href="blogInfo.websiteConfig.github"
             class="mr-5 iconfont icongithub"
-            target="_blank"
           />
           <a
             v-if="isShowSocial('gitee')"
+            target="_blank"
             :href="blogInfo.websiteConfig.gitee"
             class="iconfont icongitee-fill-round"
-            target="_blank"
           />
         </div>
       </div>
@@ -52,19 +52,19 @@
           <Swiper :list="talkList" />
         </v-card>
         <v-card
-          v-for="(item, index) of articleList"
-          :key="item.id"
           class="animated zoomIn article-card"
           style="border-radius: 12px 8px 8px 12px"
+          v-for="(item, index) of articleList"
+          :key="item.id"
         >
           <!-- 文章封面图 -->
           <div :class="isRight(index)">
             <router-link :to="'/articles/' + item.id">
               <v-img
-                :src="item.articleCover"
                 class="on-hover"
-                height="100%"
                 width="100%"
+                :src="item.articleCover"
+                height="100%"
               />
             </router-link>
           </div>
@@ -96,9 +96,9 @@
               <!-- 文章标签 -->
               <router-link
                 v-for="tag of item.tagDTOList"
-                :key="tag.id"
                 :to="'/tags/' + tag.id"
                 class="mr-1"
+                :key="tag.id"
                 style="display:inline-block"
               >
                 <v-icon size="14">mdi-tag-multiple</v-icon>{{ tag.tagName }}
@@ -123,8 +123,8 @@
               <!-- 博主头像 -->
               <v-avatar size="110">
                 <img
-                  :src="blogInfo.websiteConfig.websiteAvatar"
                   class="author-avatar"
+                  :src="blogInfo.websiteConfig.websiteAvatar"
                 />
               </v-avatar>
               <div style="font-size: 1.375rem;margin-top:0.625rem">
@@ -168,25 +168,25 @@
             <div class="card-info-social">
               <a
                 v-if="isShowSocial('qq')"
+                class="mr-5 iconfont iconqq"
+                target="_blank"
                 :href="
                   'http://wpa.qq.com/msgrd?v=3&uin=' +
                     blogInfo.websiteConfig.qq +
                     '&site=qq&menu=yes'
                 "
-                class="mr-5 iconfont iconqq"
-                target="_blank"
               />
               <a
                 v-if="isShowSocial('github')"
+                target="_blank"
                 :href="blogInfo.websiteConfig.github"
                 class="mr-5 iconfont icongithub"
-                target="_blank"
               />
               <a
                 v-if="isShowSocial('gitee')"
+                target="_blank"
                 :href="blogInfo.websiteConfig.gitee"
                 class="iconfont icongitee-fill-round"
-                target="_blank"
               />
             </div>
           </v-card>

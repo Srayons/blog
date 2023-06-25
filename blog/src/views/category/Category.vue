@@ -9,9 +9,9 @@
       <div class="category-title">分类 - {{ count }}</div>
       <ul class="category-list">
         <li
+          class="category-list-item"
           v-for="item of categoryList"
           :key="item.id"
-          class="category-list-item"
         >
           <router-link :to="'/categories/' + item.id">
             {{ item.categoryName }}

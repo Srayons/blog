@@ -16,20 +16,20 @@
           <!--          </el-upload>-->
           <button id="pick-avatar">
             <el-avatar
-                :size="120"
-                :src="this.$store.state.avatar"
                 class="avatar"
                 shape="square"
+                :size="120"
+                :src="this.$store.state.avatar"
             />
           </button>
           <avatar-cropper
+              @uploaded="updateAvatar"
               trigger="#pick-avatar"
               upload-url="/api/users/avatar"
-              @uploaded="updateAvatar"
           />
           <el-form
-              :model="infoForm"
               label-width="70px"
+              :model="infoForm"
               style="width:320px;margin-left:3rem"
           >
             <el-form-item label="昵称">
@@ -42,10 +42,10 @@
               <el-input v-model="infoForm.webSite" size="small"/>
             </el-form-item>
             <el-button
-              size="medium"
-              style="margin-left:4.375rem"
               type="primary"
               @click="updateInfo"
+              size="medium"
+              style="margin-left:4.375rem"
             >
               修改
             </el-button>
@@ -57,32 +57,32 @@
         <el-form :model="passwordForm" label-width="70px" style="width:320px">
           <el-form-item label="旧密码">
             <el-input
-              v-model="passwordForm.oldPassword"
               show-password
+              v-model="passwordForm.oldPassword"
               size="small"
               @keyup.enter.native="updatePassword"
             />
           </el-form-item>
           <el-form-item label="新密码">
             <el-input
-              v-model="passwordForm.newPassword"
               show-password
+              v-model="passwordForm.newPassword"
               size="small"
               @keyup.enter.native="updatePassword"
             />
           </el-form-item>
           <el-form-item label="确认密码">
             <el-input
-              v-model="passwordForm.confirmPassword"
               show-password
+              v-model="passwordForm.confirmPassword"
               size="small"
               @keyup.enter.native="updatePassword"
             />
           </el-form-item>
           <el-button
+            type="primary"
             size="medium"
             style="margin-left:4.4rem"
-            type="primary"
             @click="updatePassword"
           >
             修改

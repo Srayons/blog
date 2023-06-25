@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-menu
+      active-text-color="#409EFF"
+      class="side-nav-bar"
       :collapse="this.$store.state.collapse"
       :default-active="this.$route.path"
-      active-text-color="#409EFF"
       background-color="#304156"
-      class="side-nav-bar"
-      router
       text-color="#BFCBD9"
+      router
     >
       <template v-for="route of this.$store.state.userMenuList">
         <!-- 二级菜单 -->

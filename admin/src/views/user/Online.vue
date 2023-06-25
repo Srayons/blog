@@ -7,17 +7,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入用户昵称"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入用户昵称"
           style="width:200px"
           @keyup.enter.native="listOnlineUsers"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="listOnlineUsers"
         >
           搜索
@@ -35,22 +35,22 @@
       <el-table-column align="center" label="昵称" prop="nickname" />
       <el-table-column align="center" label="ip地址" prop="ipAddress" />
       <el-table-column
-        align="center"
         label="登录地址"
         prop="ipSource"
+        align="center"
         width="200"
       />
       <el-table-column
-        align="center"
         label="浏览器"
         prop="browser"
+        align="center"
         width="160"
       />
       <el-table-column align="center" label="操作系统" prop="os" />
       <el-table-column
+        prop="lastLoginTime"
         align="center"
         label="登录时间"
-        prop="lastLoginTime"
         width="200"
       >
         <template slot-scope="scope">
@@ -61,8 +61,8 @@
       <el-table-column align="center" label="操作" width="150">
         <template slot-scope="scope">
           <el-popconfirm
-            style="margin-left:10px"
             title="确定下线吗？"
+            style="margin-left:10px"
             @confirm="removeOnlineUser(scope.row)"
           >
             <el-button slot="reference" size="mini" type="text">
@@ -74,15 +74,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
   </el-card>
 </template>

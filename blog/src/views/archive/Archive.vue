@@ -22,9 +22,9 @@
       </timeline>
       <!-- 分页按钮 -->
       <v-pagination
+        color="#00C4B6"
         v-model="current"
         :length="Math.ceil(count / 10)"
-        color="#00C4B6"
         total-visible="7"
       />
     </v-card>

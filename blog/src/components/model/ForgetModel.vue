@@ -8,17 +8,17 @@
         <!-- 用户名 -->
         <v-text-field
           v-model="username"
-          clearable
           label="邮箱号"
           placeholder="请输入您的邮箱号"
+          clearable
           @keyup.enter="forget"
         />
         <!-- 验证码 -->
         <div class="mt-7 send-wrapper">
           <v-text-field
+            maxlength="6"
             v-model="code"
             label="验证码"
-            maxlength="6"
             placeholder="请输入6位验证码"
             @keyup.enter="forget"
           />
@@ -29,18 +29,18 @@
         <!-- 密码 -->
         <v-text-field
           v-model="password"
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="show ? 'text' : 'password'"
           class="mt-7"
           label="密码"
           placeholder="请输入您的密码"
           @keyup.enter="forget"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show ? 'text' : 'password'"
           @click:append="show = !show"
         />
         <!-- 按钮 -->
         <v-btn
-          block
           class="mt-7"
+          block
           color="green"
           style="color:#fff"
           @click="forget"

@@ -2,9 +2,9 @@
   <div ref="reply" class="reply-input-wrapper" style="display: none">
     <textarea
         v-model="commentContent"
+        class="comment-textarea"
         :placeholder="'回复 @' + nickname + '：'"
         auto-grow
-        class="comment-textarea"
         dense
     />
     <div class="emoji-container">

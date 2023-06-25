@@ -16,8 +16,8 @@
           </span>
           <el-button
             icon="el-icon-picture"
-            size="small"
             type="primary"
+            size="small"
             @click="uploadPhoto = true"
           >
             上传照片
@@ -28,8 +28,8 @@
       <div class="operation">
         <div class="all-check">
           <el-checkbox
-            v-model="checkAll"
             :indeterminate="isIndeterminate"
+            v-model="checkAll"
             @change="handleCheckAllChange"
           >
             全选
@@ -37,20 +37,20 @@
           <div class="check-count">已选择{{ selectPhotoIdList.length }}张</div>
         </div>
         <el-button
-          :disabled="selectPhotoIdList.length == 0"
-          icon="el-icon-deleteItem"
           size="small"
           type="success"
+          :disabled="selectPhotoIdList.length == 0"
           @click="movePhoto = true"
+          icon="el-icon-deleteItem"
         >
           移动到
         </el-button>
         <el-button
+          type="danger"
+          @click="batchDeletePhoto = true"
           :disabled="selectPhotoIdList.length == 0"
           icon="el-icon-deleteItem"
           size="small"
-          type="danger"
-          @click="batchDeletePhoto = true"
         >
           批量删除
         </el-button>
@@ -79,10 +79,10 @@
                 </el-dropdown>
               </div>
               <el-image
-                :preview-photoSrc-list="photoList"
                 :src="item.photoSrc"
                 class="photo-img"
                 fit="cover"
+                :preview-photoSrc-list="photoList"
               />
               <div class="photo-name">{{ item.photoName }}</div>
             </div>
@@ -92,14 +92,14 @@
     </el-row>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
       :hide-on-single-page="true"
-      :page-size="size"
-      :total="count"
       class="pagination-container"
-      layout="prev, pager, next"
       @size-change="sizeChange"
       @current-change="currentChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
+      layout="prev, pager, next"
     />
     <!-- 上传模态框 -->
     <el-dialog :visible.sync="uploadPhoto" top="10vh" width="70%">
@@ -110,25 +110,25 @@
       <div class="upload-container">
         <el-upload
           v-show="uploadList.length > 0"
+          action="/api/admin/photos/albums/cover"
+          list-type="picture-card"
           :before-upload="beforeUpload"
+          multiple
           :file-list="uploadList"
           :on-remove="handleRemove"
           :on-success="upload"
-          action="/api/admin/photos/albums/cover"
-          list-type="picture-card"
-          multiple
         >
           <i class="el-icon-plus" />
         </el-upload>
         <div class="upload">
           <el-upload
             v-show="uploadList.length == 0"
-            :before-upload="beforeUpload"
-            :on-success="upload"
-            :show-file-list="false"
             action="/api/admin/photos/albums/cover"
             drag
             multiple
+            :before-upload="beforeUpload"
+            :on-success="upload"
+            :show-file-list="false"
           >
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">
@@ -146,9 +146,9 @@
           <div style="margin-left:auto">
             <el-button @click="uploadPhoto = false">取 消</el-button>
             <el-button
-              :disabled="uploadList.length == 0"
               type="primary"
               @click="savePhotos"
+              :disabled="uploadList.length == 0"
             >
               开始上传
             </el-button>

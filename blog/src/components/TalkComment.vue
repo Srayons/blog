@@ -17,11 +17,11 @@
         <div class="ml-3" style="width:100%">
           <div class="comment-input">
             <textarea
-              v-model="commentContent"
-              auto-grow
               class="comment-textarea"
-              dense
+              v-model="commentContent"
               placeholder="留下点什么吧..."
+              auto-grow
+              dense
             />
           </div>
           <!-- 操作按钮 -->
@@ -33,9 +33,9 @@
               <i class="iconfont iconbiaoqing" />
             </span>
             <button
+              @click="insertComment"
               class="upload-btn v-comment-btn"
               style="margin-left:auto"
-              @click="insertComment"
             >
               提交
             </button>
@@ -49,9 +49,9 @@
     <div v-if="count > 0 && reFresh">
       <!-- 评论列表 -->
       <div
+        class="comment-wrapper"
         v-for="(item, index) of commentList"
         :key="item.id"
-        class="comment-wrapper"
       >
         <!-- 头像 -->
         <v-avatar class="comment-avatar" size="40">
@@ -89,9 +89,9 @@
           <p class="comment-content" v-html="item.commentContent"></p>
           <!-- 回复人 -->
           <div
+            style="display:flex"
             v-for="reply of item.replyDTOList"
             :key="reply.id"
-            style="display:flex"
           >
             <!-- 头像 -->
             <v-avatar class="comment-avatar" size="36">
@@ -135,8 +135,8 @@
                   <a
                     v-else
                     :href="reply.replyWebSite"
-                    class="comment-nickname ml-1"
                     target="_blank"
+                    class="comment-nickname ml-1"
                   >
                     @{{ reply.replyNickname }}
                   </a>
@@ -148,10 +148,10 @@
           </div>
           <!-- 回复数量 -->
           <div
-            v-show="item.replyCount > 3"
-            ref="check"
             class="mb-3"
             style="font-size:0.75rem;color:#6d757a"
+            v-show="item.replyCount > 3"
+            ref="check"
           >
             共
             <b>{{ item.replyCount }}</b>
@@ -165,18 +165,18 @@
           </div>
           <!-- 回复分页 -->
           <div
-            ref="paging"
             class="mb-3"
             style="font-size:0.75rem;color:#222;display:none"
+            ref="paging"
           >
             <span style="padding-right:10px">
               共{{ Math.ceil(item.replyCount / 5) }}页
             </span>
             <paging
               ref="page"
-              :commentId="item.id"
               :index="index"
               :totalPage="Math.ceil(item.replyCount / 5)"
+              :commentId="item.id"
               @changeReplyCurrent="changeReplyCurrent"
             />
           </div>

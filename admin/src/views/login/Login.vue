@@ -7,15 +7,15 @@
         ref="ruleForm"
         :model="loginForm"
         :rules="rules"
-        class="login-form"
         status-icon
+        class="login-form"
       >
         <!-- 用户名输入框 -->
         <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
-            placeholder="用户名"
             prefix-icon="el-icon-user-solid"
+            placeholder="用户名"
             @keyup.enter.native="login"
           />
         </el-form-item>
@@ -23,9 +23,9 @@
         <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
-            placeholder="密码"
             prefix-icon="iconfont el-icon-mymima"
             show-password
+            placeholder="密码"
             @keyup.enter.native="login"
           />
         </el-form-item>

@@ -4,20 +4,20 @@
     <div class="review-menu">
       <span>状态</span>
       <span
-        :class="isReview == null ? 'active-review' : 'review'"
         @click="changeReview(null)"
+        :class="isReview == null ? 'active-review' : 'review'"
       >
         全部
       </span>
       <span
-        :class="isReview == 1 ? 'active-review' : 'review'"
         @click="changeReview(1)"
+        :class="isReview == 1 ? 'active-review' : 'review'"
       >
         正常
       </span>
       <span
-        :class="isReview == 0 ? 'active-review' : 'review'"
         @click="changeReview(0)"
+        :class="isReview == 0 ? 'active-review' : 'review'"
       >
         审核中
       </span>
@@ -26,8 +26,8 @@
     <div class="operation-container">
       <el-button
         :disabled="commentIdList.length == 0"
-        icon="el-icon-delete"
         size="small"
+        icon="el-icon-delete"
         type="danger"
         @click="remove = true"
       >
@@ -35,8 +35,8 @@
       </el-button>
       <el-button
         :disabled="commentIdList.length == 0"
-        icon="el-icon-success"
         size="small"
+        icon="el-icon-success"
         type="success"
         @click="updateCommentReview(null)"
       >
@@ -45,8 +45,8 @@
       <!-- 数据筛选 -->
       <div style="margin-left:auto">
         <el-select
-          v-model="type"
           clearable
+          v-model="type"
           placeholder="请选择来源"
           size="small"
           style="margin-right:1rem"
@@ -60,17 +60,17 @@
         </el-select>
         <el-input
           v-model="keywords"
-          placeholder="请输入用户昵称"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入用户昵称"
           style="width:200px"
           @keyup.enter.native="searchComments"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchComments"
         >
           搜索
@@ -79,10 +79,10 @@
     </div>
     <!-- 表格展示 -->
     <el-table
-      v-loading="loading"
-      :data="commentList"
       border
+      v-loading="loading"
       @selection-change="selectionChange"
+      :data="commentList"
     >
       <!-- 表格列 -->
       <el-table-column type="selection" width="55" />
@@ -100,9 +100,9 @@
       />
       <!-- 回复人昵称 -->
       <el-table-column
+        prop="replyNickname"
         align="center"
         label="回复人"
-        prop="replyNickname"
         width="120"
       >
         <template slot-scope="scope">
@@ -131,8 +131,8 @@
       <el-table-column
         align="center"
         label="评论时间"
-        prop="createTime"
         width="150"
+        prop="createTime"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -159,9 +159,9 @@
         <template slot-scope="scope">
           <el-button
             v-if="scope.row.isReview == 0"
-            slot="reference"
             size="mini"
             type="success"
+            slot="reference"
             @click="updateCommentReview(scope.row.id)"
           >
             通过
@@ -180,15 +180,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
       :page-sizes="[10, 20]"
-      :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
+      :total="count"
       @current-change="currentChange"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 批量彻底删除对话框 -->
     <el-dialog :visible.sync="remove" width="30%">

@@ -4,18 +4,18 @@
     <!-- 表格操作 -->
     <div class="operation-container">
       <el-button
+        type="primary"
         icon="el-icon-plus"
         size="small"
-        type="primary"
         @click="openMenuModel(null)"
       >
         新增
       </el-button>
       <el-button
-        :disabled="this.roleIdList.length == 0"
         icon="el-icon-delete"
         size="small"
         type="danger"
+        :disabled="this.roleIdList.length == 0"
         @click="isDelete = true"
       >
         批量删除
@@ -24,17 +24,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入角色名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入角色名"
           style="width:200px"
           @keyup.enter.native="searchRoles"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="searchRoles"
         >
           搜索
@@ -45,8 +45,8 @@
     <el-table
       v-loading="loading"
       :data="roleList"
-      border
       @selection-change="selectionChange"
+      border
     >
       <!-- 表格列 -->
       <el-table-column type="selection" width="55" />
@@ -62,19 +62,19 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.isDisable"
-            :active-value="1"
-            :inactive-value="0"
             active-color="#13ce66"
             inactive-color="#F4F4F5"
+            :active-value="1"
+            :inactive-value="0"
             @change="changeDisable(scope.row)"
           />
         </template>
       </el-table-column>
       <el-table-column
-        align="center"
-        label="创建时间"
         prop="createTime"
+        align="center"
         width="150"
+        label="创建时间"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
@@ -88,15 +88,15 @@
             <i class="el-icon-edit" /> 菜单权限
           </el-button>
           <el-button
-            size="mini"
             type="text"
+            size="mini"
             @click="openResourceModel(scope.row)"
           >
             <i class="el-icon-folder-checked" /> 资源权限
           </el-button>
           <el-popconfirm
-            style="margin-left:10px"
             title="确定删除吗？"
+            style="margin-left:10px"
             @confirm="deleteRoles(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="text">
@@ -108,15 +108,15 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
-      :current-page="current"
-      :page-size="size"
-      :page-sizes="[10, 20]"
       :total="count"
       background
       class="pagination-container"
-      layout="total, sizes, prev, pager, next, jumper"
       @size-change="sizeChange"
+      :current-page="current"
+      :page-size="size"
       @current-change="currentChange"
+      :page-sizes="[10, 20]"
+      layout="total, sizes, prev, pager, next, jumper"
     />
     <!-- 菜单对话框 -->
     <el-dialog :visible.sync="roleMenu" width="30%">
@@ -130,12 +130,12 @@
         </el-form-item>
         <el-form-item label="菜单权限">
           <el-tree
-            ref="menuTree"
             :data="menuList"
             :default-checked-keys="roleForm.menuIdList"
             check-strictly
-            node-key="id"
             show-checkbox
+            ref="menuTree"
+            node-key="id"
           />
         </el-form-item>
       </el-form>
@@ -158,9 +158,9 @@
         </el-form-item>
         <el-form-item label="资源权限">
           <el-tree
-            ref="resourceTree"
             :data="resourceList"
             :default-checked-keys="roleForm.resourceIdList"
+            ref="resourceTree"
             node-key="id"
             show-checkbox
           />

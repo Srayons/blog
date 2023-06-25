@@ -4,9 +4,9 @@
     <div class="title">{{ this.$route.name }}</div>
     <div class="operation-container">
       <el-button
-        icon="el-icon-plus"
         size="small"
         type="primary"
+        icon="el-icon-plus"
         @click="openModel(null)"
       >
         新增菜单
@@ -15,17 +15,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入菜单名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入菜单名"
           style="width:200px"
           @keyup.enter.native="listMenus"
         />
         <el-button
           icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          style="margin-left:1rem"
           @click="listMenus"
         >
           搜索
@@ -36,8 +36,8 @@
     <el-table
       v-loading="loading"
       :data="menuList"
-      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       row-key="id"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
       <!-- 菜单名称 -->
       <el-table-column label="菜单名称" prop="name" width="140" />
@@ -49,9 +49,9 @@
       </el-table-column>
       <!-- 菜单排序 -->
       <el-table-column
+        prop="orderNum"
         align="center"
         label="排序"
-        prop="orderNum"
         width="100"
       />
       <!-- 访问路径 -->
@@ -63,19 +63,19 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.isHidden"
-            :active-value="1"
-            :inactive-value="0"
             active-color="#13ce66"
             inactive-color="#F4F4F5"
+            :active-value="1"
+            :inactive-value="0"
             @change="changeDisable(scope.row)"
           />
         </template>
       </el-table-column>
       <!-- 创建时间 -->
       <el-table-column
-        align="center"
         label="创建时间"
         prop="createTime"
+        align="center"
         width="150"
       >
         <template slot-scope="scope">
@@ -89,8 +89,8 @@
           <el-button
             v-if="scope.row.children"
             size="mini"
-            type="text"
             @click="openModel(scope.row, 1)"
+            type="text"
           >
             <i class="el-icon-plus" /> 新增
           </el-button>
@@ -98,8 +98,8 @@
             <i class="el-icon-edit" /> 修改
           </el-button>
           <el-popconfirm
-            style="margin-left:10px"
             title="确定删除吗？"
+            style="margin-left:10px"
             @confirm="deleteMenu(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="text">
@@ -131,8 +131,8 @@
               <el-col
                 v-for="(item, index) of iconList"
                 :key="index"
-                :gutter="10"
                 :md="12"
+                :gutter="10"
               >
                 <div class="icon-item" @click="checkIcon(item)">
                   <i :class="'iconfont ' + item" /> {{ item }}
@@ -140,9 +140,9 @@
               </el-col>
             </el-row>
             <el-input
+              :prefix-icon="'iconfont ' + menuForm.icon"
               slot="reference"
               v-model="menuForm.icon"
-              :prefix-icon="'iconfont ' + menuForm.icon"
               style="width:220px"
             />
           </el-popover>
@@ -159,9 +159,9 @@
         <el-form-item label="显示排序">
           <el-input-number
             v-model="menuForm.orderNum"
+            controls-position="right"
             :max="10"
             :min="1"
-            controls-position="right"
           />
         </el-form-item>
         <!-- 显示状态 -->

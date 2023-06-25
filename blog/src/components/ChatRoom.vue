@@ -2,8 +2,8 @@
   <div>
     <!-- 聊天界面 -->
     <div
-      v-show="isShow"
       class="chat-container animated bounceInUp"
+      v-show="isShow"
       @click="closeAll"
       @contextmenu.prevent.stop="closeAll"
     >
@@ -82,16 +82,16 @@
                 />
                 <!-- 播放 -->
                 <v-icon
-                  ref="plays"
                   :color="isSelf(item) ? '#fff' : '#000'"
+                  ref="plays"
                   style="display:inline-flex;cursor: pointer;"
                 >
                   mdi-arrow-right-drop-circle
                 </v-icon>
                 <!-- 暂停 -->
                 <v-icon
-                  ref="pauses"
                   :color="isSelf(item) ? '#fff' : '#000'"
+                  ref="pauses"
                   style="display:none;cursor: pointer;"
                 >
                   mdi-pause-circle
@@ -116,15 +116,15 @@
         <!-- 切换输入方式 -->
         <v-icon
           v-show="!isVoice"
-          style="margin-right: 8px"
           @click="isVoice = !isVoice"
+          style="margin-right: 8px"
         >
           mdi-microphone
         </v-icon>
         <v-icon
           v-show="isVoice"
-          style="margin-right: 8px"
           @click="isVoice = !isVoice"
+          style="margin-right: 8px"
         >
           mdi-keyboard
         </v-icon>
@@ -133,13 +133,13 @@
           v-show="!isVoice"
           ref="chatInput"
           v-model="content"
-          placeholder="请输入内容"
           @keydown.enter="saveMessage($event)"
+          placeholder="请输入内容"
         />
         <!-- 语音输入 -->
         <button
-          v-show="isVoice"
           class="voice-btn"
+          v-show="isVoice"
           @mousedown.prevent.stop="translationStart"
           @mouseup.prevent.stop="translationEnd($event)"
           @touchstart.prevent.stop="translationStart"
@@ -150,8 +150,8 @@
         </button>
         <!-- 表情 -->
         <i
-          :style="isEmoji ? 'color:#FFC83D' : ''"
           class="iconfont iconbiaoqing emoji"
+          :style="isEmoji ? 'color:#FFC83D' : ''"
           @click.prevent.stop="openEmoji"
         />
         <!-- 发送按钮 -->

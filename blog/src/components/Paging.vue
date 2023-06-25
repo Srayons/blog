@@ -17,9 +17,9 @@
     <template v-else-if="current < 3">
       <a
         v-for="i in 4"
-        :key="i"
         :class="'ml-1 mr-1 ' + isActive(i)"
         @click="changeReplyCurrent(i)"
+        :key="i"
       >
         {{ i }}
       </a>
@@ -40,9 +40,9 @@
       </a>
       <span v-if="current + 2 < totalPage - 1" class="ml-1 mr-1">···</span>
       <a
-        v-if="current + 2 < totalPage"
         class="ml-1 mr-1"
         @click="changeReplyCurrent(totalPage)"
+        v-if="current + 2 < totalPage"
       >
         {{ totalPage }}
       </a>
@@ -53,9 +53,9 @@
       <span class="ml-1 mr-1">···</span>
       <a
         v-for="i in 4"
-        :key="i"
         :class="'ml-1 mr-1 ' + isActive(i + (totalPage - 4))"
         @click="changeReplyCurrent(i + (totalPage - 4))"
+        :key="i"
       >
         {{ i + (totalPage - 4) }}
       </a>
@@ -66,9 +66,9 @@
       <span class="ml-1 mr-1">···</span>
       <a
         v-for="i in totalPage - current + 3"
+        @click="changeReplyCurrent(i + current - 3)"
         :key="i"
         :class="'ml-1 mr-1 ' + isActive(i + current - 3)"
-        @click="changeReplyCurrent(i + current - 3)"
       >
         {{ i + current - 3 }}
       </a>

@@ -1,9 +1,9 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
     app
-    disable-resize-watcher
+    v-model="drawer"
     overlay-opacity="0.8"
+    disable-resize-watcher
     right
     width="250"
   >

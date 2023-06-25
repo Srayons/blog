@@ -5,8 +5,8 @@
       <!-- 输入框 -->
       <Editor
         ref="editor"
-        v-model="talk.content"
         class="editor-wrapper"
+        v-model="talk.content"
         placeholder="说点什么吧"
       />
       <!-- 操作菜单 -->
@@ -15,31 +15,31 @@
           <!-- 表情 -->
           <el-popover placement="bottom-start" trigger="click" width="460">
             <span
+              class="emoji-item"
               v-for="(value, key, index) of emojiList"
               :key="index"
-              class="emoji-item"
               @click="addEmoji(key, value)"
             >
               <img
                 :src="value"
                 :title="key"
                 class="emoji"
-                height="24"
                 width="24"
+                height="24"
               />
             </span>
             <i
-              slot="reference"
               class="iconfont el-icon-mybiaoqing operation-btn"
+              slot="reference"
             />
           </el-popover>
           <!-- 图片上传 -->
           <el-upload
+            action="/api/admin/talks/images"
+            multiple
             :before-upload="beforeUpload"
             :on-success="upload"
             :show-file-list="false"
-            action="/api/admin/talks/images"
-            multiple
           >
             <i class="iconfont el-icon-mytupian operation-btn" />
           </el-upload>
@@ -47,17 +47,17 @@
         <div class="right-wrapper">
           <!-- 是否置顶 -->
           <el-switch
+            inactive-text="置顶"
             v-model="talk.isTop"
+            style="margin-right:16px"
             :active-value="1"
             :inactive-value="0"
-            inactive-text="置顶"
-            style="margin-right:16px"
           />
           <!-- 说说状态 -->
           <el-dropdown
-            style="margin-right:16px"
             trigger="click"
             @command="handleCommand"
+            style="margin-right:16px"
           >
             <span class="talk-status">
               {{ dropdownTitle }}<i class="el-icon-arrow-down el-icon--right" />
@@ -73,10 +73,10 @@
             </el-dropdown-menu>
           </el-dropdown>
           <el-button
-            :disabled="talk.content == ''"
-            size="small"
             type="primary"
+            :disabled="talk.content == ''"
             @click="saveOrUpdateTalk"
+            size="small"
           >
             发布
           </el-button>
@@ -84,15 +84,15 @@
       </div>
       <!-- 图片上传 -->
       <el-upload
-        v-show="uploadList.length > 0"
         :before-upload="beforeUpload"
+        v-show="uploadList.length > 0"
+        action="/api/admin/talks/images"
+        list-type="picture-card"
         :file-list="uploadList"
+        multiple
         :on-remove="handleRemove"
         :on-success="upload"
-        action="/api/admin/talks/images"
         class="talk-image-upload"
-        list-type="picture-card"
-        multiple
       >
         <i class="el-icon-plus" />
       </el-upload>

@@ -15,17 +15,17 @@
       <div style="margin-left:auto">
         <el-input
           v-model="keywords"
-          placeholder="请输入资源名"
           prefix-icon="el-icon-search"
           size="small"
+          placeholder="请输入资源名"
           style="width:200px"
           @keyup.enter.native="listResources"
         />
         <el-button
-          icon="el-icon-search"
           size="small"
-          style="margin-left:1rem"
           type="primary"
+          icon="el-icon-search"
+          style="margin-left:1rem"
           @click="listResources"
         >
           搜索
@@ -36,8 +36,8 @@
     <el-table
       v-loading="loading"
       :data="resourceList"
-      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       row-key="id"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
       <el-table-column label="资源名" prop="resourceName" width="220" />
       <el-table-column label="资源路径" prop="url" width="300" />
@@ -53,10 +53,10 @@
           <el-switch
             v-if="scope.row.url"
             v-model="scope.row.isAnonymous"
-            :active-value="1"
-            :inactive-value="0"
             active-color="#13ce66"
             inactive-color="#F4F4F5"
+            :active-value="1"
+            :inactive-value="0"
             @change="changeResource(scope.row)"
           />
         </template>
@@ -70,23 +70,23 @@
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
-            v-if="scope.row.children"
-            size="mini"
             type="text"
+            v-if="scope.row.children"
             @click="openAddResourceModel(scope.row)"
+            size="mini"
           >
             <i class="el-icon-plus" /> 新增
           </el-button>
           <el-button
-            size="mini"
             type="text"
+            size="mini"
             @click="openEditResourceModel(scope.row)"
           >
             <i class="el-icon-edit" /> 修改
           </el-button>
           <el-popconfirm
-            style="margin-left:10px"
             title="确定删除吗？"
+            style="margin-left:10px"
             @confirm="deleteResource(scope.row.id)"
           >
             <el-button slot="reference" size="mini" type="text">

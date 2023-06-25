@@ -2,9 +2,9 @@
   <router-link class="swiper-container" to="/talks">
     <v-icon color="#4c4948" size="20">mdi-chat-outline</v-icon>
     <div
-      id="rollScreen_container"
       :style="{ height: height * lineNum + 'px' }"
       class="rollScreen_container"
+      id="rollScreen_container"
     >
       <ul
         :class="{ rollScreen_list_unanim: num === 0 }"
@@ -12,18 +12,18 @@
         class="rollScreen_list"
       >
         <li
+          class="rollScreen_once"
           v-for="(item, index) in list"
           :key="index"
           :style="{ height: height + 'px' }"
-          class="rollScreen_once"
         >
           <span class="item" v-html="item" />
         </li>
         <li
+          class="rollScreen_once"
           v-for="(item, index) in list"
           :key="index + list.length"
           :style="{ height: height + 'px' }"
-          class="rollScreen_once"
         >
           <span class="item" v-html="item" />
         </li>
