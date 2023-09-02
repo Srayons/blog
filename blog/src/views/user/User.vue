@@ -57,6 +57,20 @@
               绑定邮箱
             </v-btn>
           </div>
+          <div v-if="loginType != 0" class="mt-7 binding">
+            <v-text-field
+              v-model="mobile"
+              disabled
+              label="手机号"
+              placeholder="请绑定手机"
+            />
+            <v-btn v-if="mobile" small text @click="openMobileModel">
+              修改绑定
+            </v-btn>
+            <v-btn v-else small text @click="openMobileModel">
+              绑定手机
+            </v-btn>
+          </div>
           <v-btn class="mt-5" outlined @click="updataUserInfo">修改</v-btn>
         </v-col>
       </v-row>
@@ -100,6 +114,9 @@ export default {
     },
     openEmailModel() {
       this.$store.state.emailFlag = true;
+    },
+    openMobileModel() {
+      this.$store.state.mobileFlag = true;
     }
   },
   computed: {

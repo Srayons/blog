@@ -11,6 +11,7 @@ export default new Vuex.Store({
     registerFlag: false,
     forgetFlag: false,
     emailFlag: false,
+    mobileFlag: false,
     drawer: false,
     loginUrl: "",
     userId: null,
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     webSite: null,
     loginType: null,
     email: null,
+    mobile: null,
     articleLikeSet: [],
     commentLikeSet: [],
     talkLikeSet: [],
@@ -75,6 +77,7 @@ export default new Vuex.Store({
       state.loginFlag = false;
       state.searchFlag = false;
       state.emailFlag = false;
+      state.mobileFlag = false;
     },
     articleLike(state, articleId) {
       var articleLikeSet = state.articleLikeSet;

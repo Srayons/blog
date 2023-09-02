@@ -166,6 +166,7 @@
           src="https://static.yxin.top/upload/photos/173f347fdeb092b4021f55d423409ac6.png"
           width="100%"
       />
+      <ChatOptionModel v-show="isShow" :isOpenChatModel="isShow"></ChatOptionModel>
     </div>
   </div>
 </template>
@@ -175,10 +176,12 @@ import Recorderx, {ENCODE_TYPE} from "recorderx";
 import Emoji from "./Emoji";
 import EmojiList from "../assets/js/emoji";
 import CryptoJS from "crypto-js";
+import ChatOptionModel from "./model/ChatOptionModel";
 
 export default {
   components: {
-    Emoji
+    Emoji,
+    ChatOptionModel
   },
   updated() {
     // this.chatRecordList = [];
@@ -212,7 +215,7 @@ export default {
       heartBeat: null,
       finalResult: "",
       socketMsg: {
-        nickname: "智能蜡笔小❤",
+        nickname: "蜡笔AI",
         avatar: "",
         content: "蜡笔，正在思考中...",
         userId: null,
@@ -224,6 +227,7 @@ export default {
   },
   methods: {
     open() {
+      this.isOpenChatModel = true
       // console.log(this.chatRecordList.length);
       if (this.websocket == null) {
         // this.socketMsg.content =
@@ -323,84 +327,84 @@ export default {
       };
       return fD(nn);
     },
-    async GPT_PLUS(your_qus) {
-      // console.log(your_qus);
-
-      let ops = {};
-      let parentID_gptplus;
-      if (parentID_gptplus) {
-        ops = {parentMessageId: parentID_gptplus};
-      }
-      let chatDivLength;
-      await fetch("https://api.gptplus.one/chat-process", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Referer: "https://gpt.gogpt.site/",
-          origin: "https://gpt.gogpt.site",
-          accept: "application/json, text/plain, */*"
-        },
-        responseType: "stream",
-        body: JSON.stringify({
-          secret: this.getGPTPLUSkey(),
-          top_p: 1,
-          prompt: your_qus,
-          systemMessage:
-              "You are ChatGPT, the version is GPT3.5, a large language model trained by OpenAI. Follow the user's instructions carefully. Respond using markdown.",
-          temperature: 0.8,
-          options: ops
-        })
-      }).then(
-          async stream => {
-            let finalResult;
-            this.chatRecordList.push(this.socketMsg);
-            chatDivLength = document.getElementsByClassName("chat-gpt-plus")
-                .length;
-            // console.log("getGPTPLUSkey=>>" + this.getGPTPLUSkey());
-            const reader = stream.body.getReader();
-            await reader.read().then(function processText({done, value}) {
-              if (done) {
-                // console.log(done);
-                // highlightCodeStr();
-                return;
-              }
-              try {
-                // console.log(normalArray)
-                let byteArray = new Uint8Array(value);
-                let decoder = new TextDecoder("utf-8");
-                // console.log(decoder.decode(byteArray));
-                let jsonLines = decoder.decode(byteArray).split("\n");
-                let nowResult = JSON.parse(jsonLines[jsonLines.length - 1]);
-
-                if (nowResult.text) {
-                  // console.log(nowResult);
-                  finalResult = nowResult.text;
-                  //调用gpt自动回复
-                  document.getElementsByClassName("chat-gpt-plus")[
-                      chatDivLength
-                      ].innerHTML = finalResult;
-                }
-                if (nowResult.id) {
-                  parentID_gptplus = nowResult.id;
-                }
-              } catch (e) {
-                console.log(e);
-              }
-              return reader.read().then(processText);
-            });
-            this.socketMsg.content = finalResult;
-
-            // console.log(finalResult);
-          },
-          function (err) {
-            console.log(err);
-            // showAnserAndHighlightCodeStr("erro:", err.message);
-          }
-      );
-      this.WebsocketMessage.data = this.socketMsg;
-      this.websocket.send(JSON.stringify(this.WebsocketMessage));
-      this.chatRecordList.splice(chatDivLength);
-    },
+    // async GPT_PLUS(your_qus) {
+    //   // console.log(your_qus);
+    //
+    //   let ops = {};
+    //   let parentID_gptplus;
+    //   if (parentID_gptplus) {
+    //     ops = {parentMessageId: parentID_gptplus};
+    //   }
+    //   let chatDivLength;
+    //   await fetch("https://api.gptplus.one/chat-process", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Referer: "https://gpt.gogpt.site/",
+    //       origin: "https://gpt.gogpt.site",
+    //       accept: "application/json, text/plain, */*"
+    //     },
+    //     responseType: "stream",
+    //     body: JSON.stringify({
+    //       secret: this.getGPTPLUSkey(),
+    //       top_p: 1,
+    //       prompt: your_qus,
+    //       systemMessage:
+    //           "You are ChatGPT, the version is GPT3.5, a large language model trained by OpenAI. Follow the user's instructions carefully. Respond using markdown.",
+    //       temperature: 0.8,
+    //       options: ops
+    //     })
+    //   }).then(
+    //       async stream => {
+    //         let finalResult;
+    //         this.chatRecordList.push(this.socketMsg);
+    //         chatDivLength = document.getElementsByClassName("chat-gpt-plus")
+    //             .length;
+    //         // console.log("getGPTPLUSkey=>>" + this.getGPTPLUSkey());
+    //         const reader = stream.body.getReader();
+    //         await reader.read().then(function processText({done, value}) {
+    //           if (done) {
+    //             // console.log(done);
+    //             // highlightCodeStr();
+    //             return;
+    //           }
+    //           try {
+    //             // console.log(normalArray)
+    //             let byteArray = new Uint8Array(value);
+    //             let decoder = new TextDecoder("utf-8");
+    //             // console.log(decoder.decode(byteArray));
+    //             let jsonLines = decoder.decode(byteArray).split("\n");
+    //             let nowResult = JSON.parse(jsonLines[jsonLines.length - 1]);
+    //
+    //             if (nowResult.text) {
+    //               // console.log(nowResult);
+    //               finalResult = nowResult.text;
+    //               //调用gpt自动回复
+    //               document.getElementsByClassName("chat-gpt-plus")[
+    //                   chatDivLength
+    //                   ].innerHTML = finalResult;
+    //             }
+    //             if (nowResult.id) {
+    //               parentID_gptplus = nowResult.id;
+    //             }
+    //           } catch (e) {
+    //             console.log(e);
+    //           }
+    //           return reader.read().then(processText);
+    //         });
+    //         this.socketMsg.content = finalResult;
+    //
+    //         // console.log(finalResult);
+    //       },
+    //       function (err) {
+    //         console.log(err);
+    //         // showAnserAndHighlightCodeStr("erro:", err.message);
+    //       }
+    //   );
+    //   this.WebsocketMessage.data = this.socketMsg;
+    //   this.websocket.send(JSON.stringify(this.WebsocketMessage));
+    //   this.chatRecordList.splice(chatDivLength);
+    // },
     saveMessage: function (e) {
       e.preventDefault();
       if (this.content.trim() == "") {
@@ -429,7 +433,10 @@ export default {
           this.content.includes("@蜡笔aI")
       ) {
         //接入ChatGPT
-        this.GPT_PLUS(this.content);
+        this.socketMsg.content = "[会思考的蜡笔]('https://chat.yxin.top')";
+        this.WebsocketMessage.data = this.socketMsg;
+        this.websocket.send(JSON.stringify(this.WebsocketMessage));
+        // this.GPT_PLUS(this.content);
       }
       // console.log(socketMsg.content);
       this.WebsocketMessage.data = socketMsg;

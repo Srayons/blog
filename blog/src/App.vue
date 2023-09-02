@@ -22,6 +22,8 @@
     <ForgetModel></ForgetModel>
     <!-- 绑定邮箱模态框 -->
     <EmailModel></EmailModel>
+    <!-- 绑定手机模态框 -->
+    <MobileModel></MobileModel>
     <!-- 音乐播放器 -->
     <Player v-if="blogInfo.websiteConfig.isMusicPlayer === 1 && !isMobile" />
     <!-- 聊天室 -->
@@ -39,6 +41,7 @@ import LoginModel from "./components/model/LoginModel";
 import RegisterModel from "./components/model/RegisterModel";
 import ForgetModel from "./components/model/ForgetModel";
 import EmailModel from "./components/model/EmailModel";
+import MobileModel from "./components/model/MobileModel";
 import Player from "./components/zw-player/player.vue";
 import ChatRoom from "./components/ChatRoom";
 
@@ -60,6 +63,7 @@ export default {
     RegisterModel,
     ForgetModel,
     EmailModel,
+    MobileModel,
     ChatRoom
   },
   methods: {
