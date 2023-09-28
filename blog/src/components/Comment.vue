@@ -76,6 +76,8 @@
             <span style="margin-right:10px">{{ count - index }}楼</span>
             <!-- 发表时间 -->
             <span style="margin-right:10px">{{ item.createTime | date }}</span>
+            <!-- 地理位置 -->
+            <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ item.ipAddress }}</span>
             <!-- 点赞 -->
             <span
               :class="isLike(item.id) + ' iconfont icondianzan'"
@@ -116,6 +118,8 @@
                 <span style="margin-right:10px">
                   {{ reply.createTime | date }}
                 </span>
+                <!-- 地理位置 -->
+                <span style="margin-right:10px; color: #fffefedc; background-color: #d60000;" class="blogger-tag">{{ reply.ipAddress }}</span>
                 <!-- 点赞 -->
                 <span
                   :class="isLike(reply.id) + ' iconfont icondianzan'"
@@ -210,15 +214,15 @@ export default {
   components: {
     Reply,
     Emoji,
-    Paging
+    Paging,
   },
   props: {
     type: {
-      type: Number
+      type: Number,
     },
     authorId: {
-      authorId: String
-    }
+      authorId: String,
+    },
   },
   created() {
     this.listComments();
@@ -230,12 +234,12 @@ export default {
       chooseEmoji: false,
       current: 1,
       commentList: [],
-      count: 0
+      count: 0,
     };
   },
   methods: {
     replyComment(index, item) {
-      this.$refs.reply.forEach(item => {
+      this.$refs.reply.forEach((item) => {
         item.$el.style.display = "none";
       });
       //传值给回复框
@@ -253,7 +257,7 @@ export default {
     checkReplies(index, item) {
       this.axios
         .get("/api/comments/" + item.id + "/replies", {
-          params: { current: 1, size: 5 }
+          params: { current: 1, size: 5 },
         })
         .then(({ data }) => {
           this.$refs.check[index].style.display = "none";
@@ -268,7 +272,7 @@ export default {
       //查看下一页回复
       this.axios
         .get("/api/comments/" + commentId + "/replies", {
-          params: { current: current, size: 5 }
+          params: { current: current, size: 5 },
         })
         .then(({ data }) => {
           this.commentList[index].replyDTOList = data.data;
@@ -280,7 +284,7 @@ export default {
       const arr = path.split("/");
       var param = {
         current: this.current,
-        type: this.type
+        type: this.type,
       };
       switch (this.type) {
         case 1:
@@ -292,7 +296,7 @@ export default {
       }
       this.axios
         .get("/api/comments", {
-          params: param
+          params: param,
         })
         .then(({ data }) => {
           if (this.current == 1) {
@@ -326,7 +330,7 @@ export default {
       const arr = path.split("/");
       var comment = {
         commentContent: this.commentContent,
-        type: this.type
+        type: this.type,
       };
       switch (this.type) {
         case 1:
@@ -380,8 +384,8 @@ export default {
         .get("/api/comments/" + this.commentList[index].id + "/replies", {
           params: {
             current: this.$refs.page[index].current,
-            size: 5
-          }
+            size: 5,
+          },
         })
         .then(({ data }) => {
           this.commentList[index].replyCount++;
@@ -393,7 +397,7 @@ export default {
           this.$refs.reply[index].$el.style.display = "none";
           this.commentList[index].replyDTOList = data.data;
         });
-    }
+    },
   },
   computed: {
     isLike() {
@@ -401,7 +405,7 @@ export default {
         var commentLikeSet = this.$store.state.commentLikeSet;
         return commentLikeSet.indexOf(commentId) != -1 ? "like-active" : "like";
       };
-    }
+    },
   },
   watch: {
     commentList() {
@@ -409,8 +413,8 @@ export default {
       this.$nextTick(() => {
         this.reFresh = true;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

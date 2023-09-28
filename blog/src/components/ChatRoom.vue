@@ -166,7 +166,7 @@
           src="https://static.yxin.top/upload/photos/173f347fdeb092b4021f55d423409ac6.png"
           width="100%"
       />
-      <ChatOptionModel v-show="isShow" :isOpenChatModel="isShow"></ChatOptionModel>
+      <ChatOptionModel :isShow="isOpenChatModel"></ChatOptionModel>
     </div>
   </div>
 </template>
@@ -194,6 +194,7 @@ export default {
   },
   data: function() {
     return {
+      isOpenChatModel: false,
       isEmoji: false,
       isShow: false,
       websocket: null,
@@ -227,7 +228,6 @@ export default {
   },
   methods: {
     open() {
-      this.isOpenChatModel = true
       // console.log(this.chatRecordList.length);
       if (this.websocket == null) {
         // this.socketMsg.content =
