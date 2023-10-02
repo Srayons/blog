@@ -166,7 +166,6 @@
           src="https://static.yxin.top/upload/photos/173f347fdeb092b4021f55d423409ac6.png"
           width="100%"
       />
-      <ChatOptionModel :isShow="isOpenChatModel"></ChatOptionModel>
     </div>
   </div>
 </template>
@@ -176,12 +175,10 @@ import Recorderx, {ENCODE_TYPE} from "recorderx";
 import Emoji from "./Emoji";
 import EmojiList from "../assets/js/emoji";
 import CryptoJS from "crypto-js";
-import ChatOptionModel from "./model/ChatOptionModel";
 
 export default {
   components: {
-    Emoji,
-    ChatOptionModel
+    Emoji
   },
   updated() {
     // this.chatRecordList = [];
@@ -194,7 +191,6 @@ export default {
   },
   data: function() {
     return {
-      isOpenChatModel: false,
       isEmoji: false,
       isShow: false,
       websocket: null,

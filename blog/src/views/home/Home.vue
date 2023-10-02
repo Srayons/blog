@@ -217,6 +217,7 @@
               </div>
             </div>
           </v-card>
+          <ChatOptionModel></ChatOptionModel>
         </div>
       </v-col>
     </v-row>
@@ -230,10 +231,12 @@
 <script>
 import Swiper from "../../components/Swiper.vue";
 import EasyTyper from "easy-typer-js";
+import ChatOptionModel from "../../components/model/ChatOptionModel";
 
 export default {
   components: {
-    Swiper
+    Swiper,
+    ChatOptionModel
   },
   created() {
     this.init();

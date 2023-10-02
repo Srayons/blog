@@ -12,8 +12,8 @@
       <v-card>
         <v-toolbar color="primary" dark>公告</v-toolbar>
         <v-card-text>
-          <div class="text-h2 pa-12">
-            {{ blogInfos.websiteConfig.websiteIntro }}
+          <div class="text-h7 pa-12">
+            {{ blogInfo.websiteConfig.websiteNotice }}
           </div>
         </v-card-text>
         <v-card-actions class="justify-end">
@@ -35,19 +35,18 @@ export default {
   data: function() {
     return {
       isOpenChatModel: false,
+      blogInfo: this.$store.state.blogInfo,
     };
   },
   created() {
-    console.log(this.isShow);
-    if (!this.isShow) {
-      // 弹出公告弹窗
-      this.isOpenChatModel = true;
-    }
+    // console.log(this.isShow);
+    // 弹出公告弹窗
+    this.isOpenChatModel = true;
   },
   methods: {
-    blogInfos() {
-      return this.$store.state.blogInfo;
-    },
+    // blogInfos() {
+    //   return ;
+    // },
     isCloseChatModel() {
       this.isOpenChatModel = false;
       // 记录IP地址
