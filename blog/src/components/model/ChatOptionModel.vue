@@ -12,7 +12,9 @@
       <v-card>
         <v-toolbar color="primary" dark>公告</v-toolbar>
         <v-card-text>
-          <div class="text-h2 pa-12"></div>
+          <div class="text-h2 pa-12">
+            {{ blogInfos.websiteConfig.websiteIntro }}
+          </div>
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn
@@ -43,6 +45,9 @@ export default {
     }
   },
   methods: {
+    blogInfos() {
+      return this.$store.state.blogInfo;
+    },
     isCloseChatModel() {
       this.isOpenChatModel = false;
       // 记录IP地址

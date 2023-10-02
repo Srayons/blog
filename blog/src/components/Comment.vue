@@ -77,7 +77,7 @@
             <!-- 发表时间 -->
             <span style="margin-right:10px">{{ item.createTime | date }}</span>
             <!-- 地理位置 -->
-            <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ item.ipAddress }}</span>
+            <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ item.ipSource }}</span>
             <!-- 点赞 -->
             <span
               :class="isLike(item.id) + ' iconfont icondianzan'"
@@ -119,7 +119,7 @@
                   {{ reply.createTime | date }}
                 </span>
                 <!-- 地理位置 -->
-                <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ reply.ipAddress }}</span>
+                <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ reply.ipSource }}</span>
                 <!-- 点赞 -->
                 <span
                   :class="isLike(reply.id) + ' iconfont icondianzan'"
