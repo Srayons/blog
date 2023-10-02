@@ -119,7 +119,7 @@
                   {{ reply.createTime | date }}
                 </span>
                 <!-- 地理位置 -->
-                <span style="margin-right:10px; color: #fffefedc; background-color: #d60000;" class="blogger-tag">{{ reply.ipAddress }}</span>
+                <span style="margin-right:10px; color: #ff0000; font-size: 12px;">{{ reply.ipAddress }}</span>
                 <!-- 点赞 -->
                 <span
                   :class="isLike(reply.id) + ' iconfont icondianzan'"
