@@ -32,8 +32,6 @@
 
 **后台链接：** [admin-blog.yxin.top](https://admin-blog.yxin.top)
 
-此项目是[@feng_meiyu](https://github.com/X1192176811/) 大佬编写的 
-
 **Github地址：** [https://github.com/X1192176811/blog](https://github.com/X1192176811/blog)
 
 **Gitee地址：** [https://gitee.com/feng_meiyu/blog](https://gitee.com/feng_meiyu/blog)
